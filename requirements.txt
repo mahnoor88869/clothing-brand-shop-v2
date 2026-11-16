@@ -1,0 +1,11 @@
+streamlit
+pandas
+numpy
+scikit-learn
+pillow
+nltk
+joblib
+tensorflow-cpu
+groq
+plotly
+matplotlib
