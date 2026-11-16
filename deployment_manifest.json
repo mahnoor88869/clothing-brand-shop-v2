@@ -1,0 +1,60 @@
+{
+  "project": "AI for Everyone Project 02 - Clothing Shop",
+  "app_trains_models": false,
+  "saved_models": [
+    "models/supervised.joblib",
+    "models/clusters.joblib",
+    "models/images.keras"
+  ],
+  "runtime_versions": {
+    "python": "3.13.18",
+    "scikit_learn": "1.6.1",
+    "tensorflow": "2.21.0",
+    "joblib": "1.6.0",
+    "image_classes": [
+      "top",
+      "trouser",
+      "bag"
+    ],
+    "image_shape": [
+      28,
+      28,
+      1
+    ],
+    "numeric_features": [
+      "last_week_units",
+      "price_pkr",
+      "discount_pct",
+      "footfall"
+    ],
+    "categorical_features": [
+      "category"
+    ],
+    "target": "next_week_units",
+    "cluster_features": [
+      "last_week_units",
+      "price_pkr",
+      "discount_pct",
+      "footfall"
+    ]
+  },
+  "required_files": [
+    "app.py",
+    "requirements.txt",
+    "README.md",
+    ".gitignore",
+    "models/supervised.joblib",
+    "models/clusters.joblib",
+    "models/images.keras",
+    "models/group_descriptions.json",
+    "models/runtime_versions.json",
+    "data/main.csv",
+    "data/feedback.csv",
+    "data/example_inputs.csv",
+    "data/meta.json",
+    "data/topic_keywords.json"
+  ],
+  "sample_image_count": 3,
+  "prompt_test_cases_included": true,
+  "training_image_arrays_included": false
+}

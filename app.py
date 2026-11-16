@@ -33,11 +33,21 @@ def load_assets():
         DATA_DIR / "main.csv", DATA_DIR / "feedback.csv", DATA_DIR / "example_inputs.csv",
         DATA_DIR / "meta.json", DATA_DIR / "topic_keywords.json",
         MODEL_DIR / "supervised.joblib", MODEL_DIR / "clusters.joblib", MODEL_DIR / "images.keras",
-        MODEL_DIR / "group_descriptions.json",
+        MODEL_DIR / "group_descriptions.json", MODEL_DIR / "runtime_versions.json",
     ]
     missing = [str(p.relative_to(BASE_DIR)) for p in required if not p.exists()]
     if missing:
         raise FileNotFoundError("Missing project files: " + ", ".join(missing))
+
+    runtime_versions = json.loads((MODEL_DIR / "runtime_versions.json").read_text(encoding="utf-8"))
+    import sklearn
+    expected_sklearn = runtime_versions.get("scikit_learn")
+    if expected_sklearn and sklearn.__version__ != expected_sklearn:
+        raise RuntimeError(
+            f"scikit-learn version mismatch: models were saved with {expected_sklearn}, "
+            f"but this app is running {sklearn.__version__}. Install the exact version "
+            f"listed in requirements.txt (scikit-learn=={expected_sklearn}) and restart."
+        )
 
     main = pd.read_csv(DATA_DIR / "main.csv")
     feedback = pd.read_csv(DATA_DIR / "feedback.csv")
@@ -48,6 +58,12 @@ def load_assets():
     supervised = joblib.load(MODEL_DIR / "supervised.joblib")
     clusters = joblib.load(MODEL_DIR / "clusters.joblib")
     import tensorflow as tf
+    expected_tf = runtime_versions.get("tensorflow")
+    if expected_tf and tf.__version__ != expected_tf:
+        raise RuntimeError(
+            f"TensorFlow version mismatch: images.keras was saved with {expected_tf}, "
+            f"but this app is running {tf.__version__}. Install tensorflow-cpu=={expected_tf}."
+        )
     image_model = tf.keras.models.load_model(MODEL_DIR / "images.keras")
 
     nltk.data.path.insert(0, str(BASE_DIR / "nltk_data"))

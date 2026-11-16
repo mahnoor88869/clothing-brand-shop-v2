@@ -1,11 +1,11 @@
 streamlit
 pandas
 numpy
-scikit-learn
+scikit-learn==1.6.1
 pillow
 nltk
 joblib
-tensorflow-cpu
+tensorflow-cpu==2.21.0
 groq
 plotly
 matplotlib

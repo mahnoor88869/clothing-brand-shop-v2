@@ -1,0 +1,32 @@
+{
+  "python": "3.13.18",
+  "scikit_learn": "1.6.1",
+  "tensorflow": "2.21.0",
+  "joblib": "1.6.0",
+  "image_classes": [
+    "top",
+    "trouser",
+    "bag"
+  ],
+  "image_shape": [
+    28,
+    28,
+    1
+  ],
+  "numeric_features": [
+    "last_week_units",
+    "price_pkr",
+    "discount_pct",
+    "footfall"
+  ],
+  "categorical_features": [
+    "category"
+  ],
+  "target": "next_week_units",
+  "cluster_features": [
+    "last_week_units",
+    "price_pkr",
+    "discount_pct",
+    "footfall"
+  ]
+}
